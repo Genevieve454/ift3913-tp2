@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas as pd
 from pandas.plotting import scatter_matrix
 
@@ -16,3 +17,19 @@ for i, j in zip(*plt.np.tril_indices_from(axes, k=1)):
 
 plt.suptitle("Matrice de corrélation entre différentes mesures,\n pour le projet jfreechart")
 plt.show()
+
+# Regression linéaire
+data.columns = [colonne.strip() for colonne in data.columns]
+# colonnes_a_tester = {['NCLOC', 'WMC'], ['DCP', 'WMC'], ['NOCom', 'WMC']}
+
+for nom_colonne in list(data):
+    if nom_colonne == 'WMC':
+        continue
+    x = data[nom_colonne]
+    y = data['WMC']
+    plt.plot(x, y, 'o')
+    slope, intercept = np.polyfit(x, y, 1)
+    plt.plot(x, slope * x + intercept)
+    titre = "Régression linéaire des données : WMC et " + nom_colonne
+    plt.suptitle(titre)
+    plt.show()
