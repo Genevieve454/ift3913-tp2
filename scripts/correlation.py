@@ -15,7 +15,8 @@ for i, j in zip(*plt.np.tril_indices_from(axes, k=1)):
         axes[i, j].annotate(
             "%.3f" % corr[i, j], (0.8, 0.8), xycoords='axes fraction', ha='center', va='center')
 
-plt.suptitle("Matrice de corrélation entre différentes mesures,\n pour le projet jfreechart")
+plt.suptitle(
+    "Matrice de corrélation entre différentes mesures,\n pour le projet jfreechart")
 plt.show()
 
 # Regression linéaire
@@ -32,4 +33,8 @@ for nom_colonne in list(data):
     plt.plot(x, slope * x + intercept)
     titre = "Régression linéaire des données : WMC et " + nom_colonne
     plt.suptitle(titre)
+    plt.xlabel(nom_colonne)
+    print(
+        f"Y (WMC) = X ({nom_colonne}) * {round(slope, 2)} + {round(intercept, 2)}")
+    plt.ylabel('WMC')
     plt.show()
